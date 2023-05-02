@@ -154,4 +154,92 @@ if(unsubscribeConfirmationButton){
 }
 }
 
-handleDynamicContent();
+window.onload = function() {
+  handleDynamicContent();
+};
+
+const likeIcon = document.querySelector('.feather-thumbs-up');
+const likeButton = document.querySelector('.like');
+likeButton.addEventListener('click', function(){
+  const likeButtonContent = document.querySelector('.liked');
+  console.log(likeButtonContent.innerText);
+  const liked = likeButtonContent.innerText;
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'sub.php?name=' + user_first_name + '&vidId=' + vidId, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+          if (this.status === 200) {
+      
+            const response = JSON.parse(xhr.responseText);
+            document.querySelector('.show-subscribed-banner').innerHTML = response.message;
+            document.querySelector('.likes-count').innerHTML = response.likes;
+            if(likeIcon.classList.contains('filler-for-svg')){
+              likeIcon.classList.remove('filler-for-svg');
+            }else{
+              likeIcon.classList.add('filler-for-svg');
+              dislikeIcon.classList.remove('filler-for-svg');
+            }
+            
+            
+            const message =  document.querySelector('.show-subscribed-banner');
+            message.style.display = 'block';
+            message.classList.add('banner-visible');
+  
+            function handleAnimationEnd() {
+              message.style.display = 'none';
+            }
+            
+            message.addEventListener('animationend', handleAnimationEnd);
+            
+            // Call the function to handle the dynamically loaded content
+            handleDynamicContent();
+          } else {
+            console.error(xhr.statusText);
+          }
+        }
+        xhr.send(`liked=${liked}`);
+
+
+});
+
+const dislikeIcon = document.querySelector('.feather-thumbs-down');
+const dislikeButton = document.querySelector('.dislike');
+dislikeButton.addEventListener('click', function(){
+  const dislikeButtonContent = document.querySelector('.disliked');
+  console.log(dislikeButtonContent.innerText);
+  const disliked = dislikeButtonContent.innerText;
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'sub.php?name=' + user_first_name + '&vidId=' + vidId, true);
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
+          if (this.status === 200) {
+      
+            const response = JSON.parse(xhr.responseText);
+            document.querySelector('.show-subscribed-banner').innerHTML = response.message;
+            document.querySelector('.dislikes-count').innerHTML = response.dislikes;
+            if(dislikeIcon.classList.contains('filler-for-svg')){
+              dislikeIcon.classList.remove('filler-for-svg');
+            }else{
+              dislikeIcon.classList.add('filler-for-svg');
+              likeIcon.classList.remove('filler-for-svg');
+            }
+            
+            const message =  document.querySelector('.show-subscribed-banner');
+            message.style.display = 'block';
+            message.classList.add('banner-visible');
+  
+            function handleAnimationEnd() {
+              message.style.display = 'none';
+            }
+            
+            message.addEventListener('animationend', handleAnimationEnd);
+            
+            // Call the function to handle the dynamically loaded content
+            handleDynamicContent();
+          } else {
+            console.error(xhr.statusText);
+          }
+        }
+        xhr.send(`liked=${disliked}`);
+});
+

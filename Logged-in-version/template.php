@@ -138,13 +138,71 @@ $row2 = mysqli_fetch_assoc($result2);
     <div class="rest-of-navigations">
         <div class="like-and-dislike">
             <div class="like">
-            <img src="../Icons/thumbs-up-solid.svg" alt="">
-            <div><p>20K</p></div>
+            <p class="liked">Liked</p>
+            <?php
+                $sql6 = "SELECT * FROM like_dislike where username='$user_name' AND vidId='$vid_uuid'";
+                $result6 = mysqli_query($conn, $sql6);
+                if(mysqli_num_rows($result6) > 0){
+                    $row4 = mysqli_fetch_assoc($result6);
+                if($row4['liked'] == true){
+                    echo '<svg class="feather feather-thumbs-up filler-for-svg" fill="none" height="22" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>';
+                }elseif($row4['liked'] == false){
+                    echo '<svg class="feather feather-thumbs-up" fill="none" height="22" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>';
+                }
+
+                }else{
+                    echo '<svg class="feather feather-thumbs-up" fill="none" height="22" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>';
+                }
+                
+            ?>
+            
+            <div ><p class="likes-count">
+                <?php 
+                $sql8 = "SELECT COUNT(*) FROM like_dislike WHERE vidId = '$vid_uuid' AND liked= true;";
+                $result7 = mysqli_query($conn, $sql8);
+                if(mysqli_num_rows($result7) > 0){
+                    $row6 = mysqli_fetch_assoc($result7);
+                    echo $row6['COUNT(*)'];
+                }else{
+                    echo '0';
+                }
+               
+                 ?>
+            </p></div>
             </div>
             <div class="separator"></div>
             <div class="dislike">
-            <img src="../Icons/thumbs-down.svg" alt="">
-            <div><p>3.3K</p></div>
+            <p class="disliked">Disliked</p>
+            <?php
+                $sql7 = "SELECT * FROM like_dislike where username='$user_name' AND vidId='$vid_uuid'";
+                $result7 = mysqli_query($conn, $sql7);
+                if(mysqli_num_rows($result7) > 0){
+                    $row5 = mysqli_fetch_assoc($result7);
+                if($row5['disliked'] == true){
+                    echo '<svg class="feather feather-thumbs-down filler-for-svg" fill="none" height="22" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>';
+                }elseif($row5['disliked'] == false){
+                    echo '<svg class="feather feather-thumbs-down" fill="none" height="22" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>';
+                }
+
+                }else{
+                    echo '<svg class="feather feather-thumbs-down" fill="none" height="22" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>';
+                }
+                
+            ?>
+           
+            <div><p class="dislikes-count">
+            <?php
+                $sql9 = "SELECT COUNT(*) FROM like_dislike WHERE vidId = '$vid_uuid' AND disliked= true;";
+                $result8 = mysqli_query($conn, $sql9);
+                if(mysqli_num_rows($result8) > 0){
+                    $row7 = mysqli_fetch_assoc($result8);
+                    echo $row7['COUNT(*)'];
+                }else{
+                    echo '0';
+                }
+               
+                 ?>
+            </p></div>
             </div>
         </div>
 
@@ -306,6 +364,9 @@ $row2 = mysqli_fetch_assoc($result2);
 <script src="files_for_template/template.js"></script>
 <?php
 echo '<script>var user_first_name = "' . $user_name . '";</script>';
+?>
+<?php
+echo '<script>var vidId = "' . $vid_uuid . '";</script>';
 ?>
 </html>
 

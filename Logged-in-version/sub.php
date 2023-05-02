@@ -39,3 +39,103 @@ if(isset($_POST['unsubscribe']) && ($_POST['unsubscribe'] == 'Unsubscribe')){
     //     echo 'No subscription found';
     // }
 }
+
+if(isset($_POST['liked']) && $_POST['liked'] == 'Liked'){
+    $username = mysqli_real_escape_string($conn, $_GET['name']);
+    $vidId = mysqli_real_escape_string($conn, $_GET['vidId']);
+
+    $sql = "SELECT * FROM like_dislike WHERE username='$username' AND vidId='$vidId' ";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    if(mysqli_num_rows($result) > 0){
+        if($row['liked'] == true){
+            $sql = "UPDATE like_dislike SET liked = false WHERE username = '$username' AND vidId = '$vidId'";
+            $result = mysqli_query($conn, $sql);
+
+            $sql2 = "SELECT COUNT(*) FROM like_dislike WHERE vidId='$vidId' AND liked=true";
+            $result2 = mysqli_query($conn, $sql2);
+            $row2 = mysqli_fetch_assoc($result2);
+            $likes = $row2['COUNT(*)'];
+
+            echo json_encode(array('message' => 'Removed from liked videos', 'likes' => $likes));
+        }elseif($row['liked'] == false){
+            $sql = "UPDATE like_dislike SET liked = true WHERE username = '$username' AND vidId = '$vidId'";
+            $result = mysqli_query($conn, $sql);
+            $sql2 = "UPDATE like_dislike SET disliked = false WHERE username = '$username' AND vidId = '$vidId'";
+            $result2 = mysqli_query($conn, $sql2);
+
+            $sql3 = "SELECT COUNT(*) FROM like_dislike WHERE vidId='$vidId' AND liked=true";
+            $result3 = mysqli_query($conn, $sql3);
+            $row2 = mysqli_fetch_assoc($result3);
+            $likes = $row2['COUNT(*)'];
+
+            echo json_encode(array('message' => 'Added to liked videos', 'likes' => $likes));
+        }
+        
+    }else{
+        $stmt =$conn->prepare("INSERT INTO like_dislike (username, vidId) VALUES  (?, ?)");
+        $stmt->bind_param("ss", $username, $vidId);
+        $stmt->execute();
+        $stmt->close();
+        $sql = "UPDATE like_dislike SET liked = true WHERE username = '$username' AND vidId = '$vidId'";
+        mysqli_query($conn, $sql);
+
+        $sql2 = "SELECT COUNT(*) FROM like_dislike WHERE vidId='$vidId' AND liked=true";
+        $result2 = mysqli_query($conn, $sql2);
+        $row2 = mysqli_fetch_assoc($result2);
+        $likes = $row2['COUNT(*)'];
+
+        echo json_encode(array('message' => 'Added to liked videos', 'likes' => $likes));
+    }
+    
+}
+if(isset($_POST['liked']) && $_POST['liked'] == 'Disliked'){
+    $username = mysqli_real_escape_string($conn, $_GET['name']);
+    $vidId = mysqli_real_escape_string($conn, $_GET['vidId']);
+
+    $sql = "SELECT * FROM like_dislike WHERE username='$username' AND vidId='$vidId' ";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    
+    if(mysqli_num_rows($result) > 0){
+        if($row['disliked'] == true){
+            $sql2 = "UPDATE like_dislike SET disliked = false WHERE username = '$username' AND vidId = '$vidId'";
+            $result2 = mysqli_query($conn, $sql2);
+
+            $sql2 = "SELECT COUNT(*) FROM like_dislike WHERE vidId='$vidId' AND disliked=true";
+            $result2 = mysqli_query($conn, $sql2);
+            $row2 = mysqli_fetch_assoc($result2);
+            $dislikes = $row2['COUNT(*)'];
+
+            echo json_encode(array('message' => 'Removed dislike', 'dislikes' => $dislikes));
+        }elseif($row['disliked'] == false){
+            $sql = "UPDATE like_dislike SET liked = false WHERE username = '$username' AND vidId = '$vidId'";
+            $result = mysqli_query($conn, $sql);
+            $sql2 = "UPDATE like_dislike SET disliked = true WHERE username = '$username' AND vidId = '$vidId'";
+            $result2 = mysqli_query($conn, $sql2);
+
+            $sql3 = "SELECT COUNT(*) FROM like_dislike WHERE vidId='$vidId' AND disliked=true";
+            $result3 = mysqli_query($conn, $sql3);
+            $row2 = mysqli_fetch_assoc($result3);
+            $dislikes = $row2['COUNT(*)'];
+
+            echo json_encode(array('message' => 'Feedback shared with creator', 'dislikes' => $dislikes));
+        }
+       
+    }elseif(mysqli_num_rows($result) == 0){
+        $stmt =$conn->prepare("INSERT INTO like_dislike (username, vidId) VALUES  (?, ?)");
+        $stmt->bind_param("ss", $username, $vidId);
+        $stmt->execute();
+        $stmt->close();
+        $sql = "UPDATE like_dislike SET disliked = true WHERE username = '$username' AND vidId = '$vidId'";
+        mysqli_query($conn, $sql);
+
+        $sql3 = "SELECT COUNT(*) FROM like_dislike WHERE vidId='$vidId' AND disliked=true";
+        $result3 = mysqli_query($conn, $sql3);
+        $row2 = mysqli_fetch_assoc($result3);
+        $dislikes = $row2['COUNT(*)'];
+
+        echo json_encode(array('message' => 'Feedback shared with creator', 'dislikes' => $dislikes));
+
+    }
+}
