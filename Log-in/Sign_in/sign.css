@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Be+Vietnam+Pro:wght@400;500;700&family=Quicksand:wght@300&family=Roboto&family=Rubik:wght@300&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family: roboto;
+    box-sizing: border-box;
+
+}
+
+body{
+    display: grid;
+    place-items: center;
+}
+.wrapper{
+    transform: translateY(25%);
+}
+.container{
+   
+    padding: 40px 40px;
+    padding-bottom: 65px;
+    border: 1px solid rgba(128, 128, 128, 0.288);
+    border-radius: 8px;
+}
+.centered{
+    display: grid;
+    text-align: center;
+    gap: .6em;
+}
+.logo img{
+    height: 24px;
+    width: 75px;
+}
+.paragraph1{
+    font-size: 24px;
+}
+.paragraph2{
+    color: rgb(63, 63, 63);
+}
+
+.input1{
+    margin-top: 38px;
+    width: 100%;
+    padding: 19px 10px;
+    outline: none;
+    border: 1px solid rgba(192, 190, 190, 0.521);
+    border-radius: 4px;
+}
+
+.input1:focus{
+    transition: all .1s ease-in-out;
+    border: 1px solid white;
+    box-shadow: inset 0px 0px 0px 2px blue;
+}
+.lab1{
+    position: absolute;
+    z-index: 4;
+    margin-top: -37px;
+    margin-left: 15px;
+    color: rgb(133, 132, 132);
+    pointer-events: none;
+    background-color: white;
+
+}
+.is-invalid{
+    border: 1px solid crimson;
+}
+.is-invalid:focus{
+    border: 1px solid white;
+    box-shadow: inset 0px 0px 0px 2px crimson;
+}
+
+
+.input1:focus + .lab1,
+.input1:valid + .lab1{
+    margin-top: -64px;
+    transform: scale(.8);
+    margin-left: 5px;
+    transition: all .1s ease-in-out;
+    color: blue;
+}
+.input1:not(:focus) + .lab1{
+    transition: all .12s ease-in-out;
+    color: gray;
+}
+.p-total{
+    margin-top: 67px;
+    
+}
+.paragraph3{
+    font-size: 14px;
+    color: gray;
+    padding-right: 18px;
+}
+.p-total button{
+    background-color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 3px 3px;
+    margin-top: 5px;
+    margin-left: -2px;
+    
+}
+.p-total button a{
+    font-size: 13px;
+    color: rgb(80, 80, 241);
+    font-weight: 600;
+}
+.p-total button:hover{
+    box-shadow: 0px .5px 2px .8px rgba(0, 0, 255, 0.61);
+}
+
+.bottom-btn{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+}
+
+.bottom-btn button{
+    background-color: white;
+    border: none;
+    padding: 6px 8px;
+    border-radius: 4px;
+    margin-left: -7px;
+}
+.bottom-btn button:hover{
+    background-color: rgba(138, 138, 252, 0.144);
+}
+
+.bottom-btn button a{
+    font-size: 13px;
+    color: rgb(80, 80, 241);
+    font-weight: 600;
+}
+
+.bottom-btn input{
+    background-color:rgb(80, 80, 241)  ;
+    color:white;
+    border: none;
+    padding: 8px 19px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.bottom-btn input:hover{
+    background-color:rgb(8, 8, 238)  ;
+}
+.dropdown{
+    display: none;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    z-index: 4;
+    margin-top: -645px;
+    height: 600px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: white;
+    border-radius: 4px;
+    font-size: 13px;
+}
+.dropdown div{
+    padding: 20px 22px;
+    cursor: pointer;
+    background-color: white;
+    
+}
+
+.dropdown div:hover{
+    background-color: rgb(241, 239, 239);
+}
+.current-lang{
+    margin-right: auto;
+    padding: 17px 18px;
+    display: flex;
+    gap: 2em;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 4px;
+    font-size: 13px;
+  
+}
+.current-lang:hover{
+    background-color: rgba(238, 236, 236, 0.548);
+}
+
+.show{
+    display: block;
+}
+.bottom-nav{
+    text-align: center;
+    margin-top: 5px;
+    width: 105%;
+    display: flex;
+    margin-left: -20px;
+   
+}
+.bottom-links{
+    margin-left: auto;
+    transform: translateY(20px);
+    display: flex;
+    gap: 2em;
+    cursor: pointer;
+    height: 10px;
+    padding-right: 10px;
+}
+.bottom-links a{
+    font-size: 12px;
+    color: rgb(34, 33, 33);
+}
+.invalid-feedback{
+    margin-top: 5px;
+    font-size: 14px;
+    padding-left: 10px;
+}
+.is-invalid:focus + .is-invalid-lab{
+    color: crimson;
+}
+.is-invalid:valid + .is-invalid-lab{
+    color: crimson;
+}

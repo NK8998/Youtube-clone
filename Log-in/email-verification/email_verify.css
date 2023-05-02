@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Be+Vietnam+Pro:wght@400;500;700&family=Quicksand:wght@300&family=Roboto&family=Rubik:wght@300&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: roboto;
+    text-decoration: none;
+}
+body{
+    display: grid;
+    place-items: center;
+}
+.container{
+    border: 1px solid rgba(128, 128, 128, 0.267);
+    display: flex;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 100px;
+    padding-right: 10px;
+    border-radius: 6px;
+}
+.wrapper-total{
+    margin-top: 100px;
+}
+.form-container{
+    padding: 20px 20px;
+}
+.wrapper-form{
+    width: 100%;
+}
+.right-side{
+    padding: 20px 20px;
+    padding-right: 40px;
+}
+.right-side img{
+    height: 160px;
+    width: 260px;
+    transform: translateY(120px);
+}
+.top-img img{
+    height: 25px;
+    width: 75px;
+}
+
+.paragraph1{
+    margin-top: 15px;
+    font-size: 24px;
+}
+.paragraph2{
+    margin-top: 28px;
+    font-size: 14.5px;
+    line-height: 1.3;
+    color: rgb(65, 63, 63);
+}
+.input1{
+    margin-top: 20px;
+    padding: 18px 10px;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid rgba(128, 128, 128, 0.192);
+}
+.form-control1{
+    display: flex;
+}
+.form-control1 input{
+    flex-grow: 1;
+}
+
+.input1:focus{
+    transition: all .1s ease-in-out;
+    border: 1px solid white;
+    box-shadow: inset 0px 0px 0px 2px rgb(65, 65, 255);
+}
+
+.lab1{
+    position: absolute;
+    pointer-events: none;
+    margin-top: 37px;
+    font-size: 17px;
+    color: gray;
+    margin-left: 10px;
+    background-color: white;
+    font-weight: 100;
+}
+.input1:focus + .lab1,
+.input1:valid + .lab1{
+    transition: all .12s ease-in-out;
+    margin-top: 12px;
+    color: rgb(65, 65, 255);
+    transform: scale(.7);
+    margin-left: -3px;
+}
+.input1:not(:focus) + .lab1{
+    transition: all .12s ease-in-out;
+    color: gray;
+}
+
+.bottom-btn{
+    width: 100%;
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+.bottom-btn button{
+    background-color: white;
+    border: none;
+    color: rgb(65, 65, 255);
+    font-weight: 700;
+    font-size: 13px;
+    padding: 0px 6px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.bottom-btn button:hover{
+    background-color: rgba(128, 128, 128, 0.062);
+}
+
+.bottom-btn input{
+    color: white;
+    background-color: rgb(65, 65, 255);
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.bottom-nav{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.current-lang{
+    margin-right: auto;
+    padding: 17px 18px;
+    display: flex;
+    gap: 2em;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 4px;
+    font-size: 13px;
+  
+}
+.dropdown{
+    display: none;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    z-index: 4;
+    margin-top: -645px;
+    height: 600px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: white;
+    border-radius: 4px;
+    font-size: 13px;
+}
+.show{
+    display: block;
+}
+.dropdown div{
+    padding: 20px 22px;
+    cursor: pointer;
+    background-color: white;
+    
+}
+
+.dropdown div:hover{
+    background-color: rgb(241, 239, 239);
+}
+.current-lang:hover{
+    background-color: rgba(238, 236, 236, 0.548);
+}
+.bottom-links{
+    margin-left: auto;
+    transform: translateY(20px);
+    display: flex;
+    gap: 2em;
+    cursor: pointer;
+    height: 10px;
+    padding-right: 10px;
+}
+.bottom-links a{
+    font-size: 12px;
+    color: rgb(34, 33, 33);
+}
+.invalid-feedback{
+    margin-top: 4px;
+    padding-left: 10px;
+    font-size: 13px;
+}
+.is-invalid{
+    border: 1px solid crimson;
+}
+.is-invalid:focus{
+    box-shadow: inset 0px 0px 0px 2px crimson;
+}
+.is-invalid:focus + .is-invalid-lab{
+    color: crimson;
+}
+.is-invalid-lab{
+    color: crimson;
+}

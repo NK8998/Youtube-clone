@@ -1,0 +1,384 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Be+Vietnam+Pro:wght@400;500;700&family=Quicksand:wght@300&family=Roboto&family=Rubik:wght@300&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    font-family: roboto;
+    box-sizing: border-box;
+}
+
+body{
+    display: grid;
+    place-items: center;
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+
+.wrapper{
+    margin-top: 70px;
+    border: 1px solid rgb(212, 211, 211);
+    border-radius: 8px;
+}
+.container{
+ 
+    display: flex;
+}
+.form-container{
+    padding: 50px 20px;
+    padding-left: 29px;
+    
+    
+}
+.form-container img{
+    height: 25px;
+    width: 75px;
+}
+
+.logo img{
+    height: 250px;
+    width: 250px;
+}
+input{
+    padding: 8px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid rgba(128, 128, 128, 0.432);
+    outline: none;
+    
+}
+
+input:focus{
+    transition: all .1s ease-in-out;
+    border: 1px solid white;
+    box-shadow: inset 0px 0px 0px 2px blue;
+}
+
+
+.lab1{
+    position: absolute;
+    pointer-events: none;
+    margin-top: -28px;
+    font-size: 14px;
+    color: gray;
+    margin-left: 10px;
+    background-color: white;
+}
+.lab1 p{
+    padding: 3px;
+}
+
+.input1:focus + .lab1,
+.input1:valid + .lab1{
+    transition: all .12s ease-in-out;
+    margin-top: -43px;
+    color: blue;
+    transform: scale(.8);
+    margin-left: 2px;
+}
+.input1:focus + .is-invalid-lab{
+    color: crimson;
+}
+.input1:not(:focus) + .lab1{
+    transition: all .12s ease-in-out;
+    color: gray;
+}
+
+.lab2{
+    position: absolute;
+    pointer-events: none;
+    margin-top: -28px;
+    font-size: 14px;
+    color: gray;
+    margin-left: 188px;
+    background-color: white;
+}
+.lab2 p{
+    padding: 3px;
+}
+.input2:focus + .lab2,
+.input2:valid + .lab2{
+    transition: all .12s ease-in-out;
+    margin-top: -43px;
+    color: blue;
+    transform: scale(.8);
+    margin-left: 180px;
+}
+.input2:focus + .is-invalid-lab{
+    color: crimson;
+}
+.input2:not(:focus) + .lab2{
+    transition: all .12s ease-in-out;
+    color: gray;
+}
+.lab3{
+    position: absolute;
+    pointer-events: none;
+    margin-top: -28px;
+    font-size: 14px;
+    color: gray;
+    margin-left: 10px;
+    background-color: white;
+}
+.lab3 p{
+    padding: 3px;
+}
+.input3:focus + .lab3,
+.input3:valid + .lab3{
+    transition: all .12s ease-in-out;
+    margin-top: -43px;
+    color: blue;
+    transform: scale(.8);
+    margin-left: 2px;
+}
+.input3:focus + .is-invalid-lab{
+    color: crimson;
+}
+.input3:not(:focus) + .lab3{
+    transition: all .12s ease-in-out;
+    color: gray;
+}
+
+.lab4{
+    position: absolute;
+    pointer-events: none;
+    margin-top: -28px;
+    font-size: 14px;
+    color: gray;
+    margin-left: 10px;
+    background-color: white;
+}
+.lab4 p{
+    padding: 3px;
+}
+.input4:focus + .lab4,
+.input4:valid + .lab4{
+    transition: all .12s ease-in-out;
+    margin-top: -43px;
+    color: blue;
+    transform: scale(.8);
+    margin-left: 2px;
+}
+.input4:focus + .is-invalid-lab{
+    color: crimson;
+}
+.input4:not(:focus) + .lab4{
+    transition: all .12s ease-in-out;
+    color: gray;
+}
+
+.lab5{
+    position: absolute;
+    pointer-events: none;
+    margin-top: -28px;
+    font-size: 14px;
+    color: gray;
+    margin-left: 188px;
+    background-color: white;
+}
+.lab5 p{
+    padding: 3px;
+}
+.input5:focus + .lab5,
+.input5:valid + .lab5{
+    transition: all .12s ease-in-out;
+    margin-top: -43px;
+    color: blue;
+    transform: scale(.8);
+    margin-left: 180px;
+}
+
+.input5:focus + .is-invalid-lab{
+    color: crimson;
+}
+.input5:not(:focus) + .lab5{
+    transition: all .12s ease-in-out;
+    color: gray;
+}
+
+.bottom-row{
+    display: flex;
+    justify-content: space-between;
+}
+
+.paragraph1{
+    font-size: 24px;
+    margin-top: 10px;
+    color: rgb(49, 49, 49);
+}
+.paragraph2{
+    margin-top: 5px;
+}
+
+.form-control1{
+    margin-top: 30px;
+}
+
+.form-control2{
+    margin-top: 20px;
+}
+.form-control2 input{
+    width: 100%;
+}
+
+.Create{
+    margin-top: 30px;
+}
+
+
+.Create button{
+    padding: 8px;
+    background-color: white;
+    border:none;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 3px;
+}
+.Create button a{
+    color: rgb(97, 97, 218);
+}
+.Create button:hover{
+    background-color: rgba(193, 193, 204, 0.103);
+}
+
+.form-control3{
+    margin-top: 40px;
+}
+
+.toggle{
+    margin-top: 40px;
+    display: flex;
+    gap: 1em;
+   
+}
+.toggle label{
+    font-size: 15px;
+}
+.label{
+    transform: translateY(-1px);
+}
+.bottom-btn{
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+.btn-1 button{
+    border: none;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn-1 button:hover{
+    background-color: rgba(193, 193, 204, 0.103);
+}
+
+.btn-1 button a{
+    color: blue;
+    font-weight: 600;
+}
+
+.btn-2 button{
+    border: none;
+    background-color: rgb(50, 50, 238);
+    padding: 10px 26px;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.invalid-feedback p{
+    transform: translateY(5px);
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+.bottom-row p{
+    font-size: 12px;
+}
+.dropdown{
+    display: none;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    z-index: 4;
+    margin-top: -645px;
+    height: 600px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: white;
+    border-radius: 4px;
+}
+.dropdown div{
+    padding: 20px 22px;
+    cursor: pointer;
+    background-color: white;
+    
+}
+
+.dropdown div:hover{
+    background-color: rgb(241, 239, 239);
+}
+.current-lang{
+    margin-right: auto;
+    padding: 17px 18px;
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 4px;
+    width: 210px;
+  
+}
+.current-lang p,
+.current-lang i{
+    pointer-events: none;
+}
+.current-lang:hover{
+    background-color: rgba(238, 236, 236, 0.548);
+}
+
+.show{
+    display: block;
+}
+.bottom-nav{
+    text-align: center;
+    margin-top: 5px;
+    width: 105%;
+    display: flex;
+    margin-left: -20px;
+   
+}
+.bottom-links{
+    margin-left: auto;
+    transform: translateY(20px);
+    display: flex;
+    gap: 2em;
+    cursor: pointer;
+    height: 10px;
+    padding-right: 10px;
+}
+.bottom-links a{
+    font-size: 12px;
+    color: rgb(34, 33, 33);
+}
+.rightside{
+    transform: translateY(100px);
+    text-align: center;
+    padding: 20px 53px;
+}
+@media(max-width: 50em){
+    .rightside{
+        display: none;
+    }
+    
+}
+.is-invalid{
+    box-shadow: inset 0px 0px 0px 1px crimson;
+    border: 1px solid white;
+}
+.is-invalid:focus{
+    box-shadow: inset 0px 0px 0px 2px crimson;
+}
+
