@@ -12,26 +12,52 @@ searchbar.addEventListener('blur', () => {
 
 const buttonRight = document.getElementById('slide-right');
 const buttonLeft = document.getElementById('slide-left');
+const buttonRightdropdown = document.querySelector('.slide-right-2');
+const buttonLeftdropdown = document.querySelector('.slide-left-2');
 buttonLeft.classList.add('is-hidden');
+buttonLeftdropdown.classList.add('is-hidden');
 const recommendations = document.getElementById('recommendations-links');
+const shareDropdownIcons = document.querySelector('.icons-section');
 
 buttonLeft.addEventListener('click', function(){
   recommendations.scrollLeft -= 200;
-})
+});
+buttonLeftdropdown.addEventListener('click', function(){
+  shareDropdownIcons.scrollLeft -=100;
+});
 
 buttonRight.addEventListener('click', function(){
     recommendations.scrollLeft += 200;
+});
+buttonRightdropdown.addEventListener('click', function(){
+  shareDropdownIcons.scrollLeft +=100;
 })
 
 function toggleButtonVisibility() {
   const scrollPosition = recommendations.scrollLeft + recommendations.clientWidth;
   const isAtEnd = scrollPosition >= recommendations.scrollWidth;
   const isAtBeginning = recommendations.scrollLeft === 0;
+  const scrollPositionShare = shareDropdownIcons.scrollLeft + shareDropdownIcons.clientWidth;
+  const isAtEndShare = scrollPositionShare >= shareDropdownIcons.scrollWidth;
+  const isAtBeginningShare = shareDropdownIcons.scrollLeft === 0;
 
   buttonLeft.classList.toggle('is-hidden', isAtBeginning);
   buttonRight.classList.toggle('is-hidden', isAtEnd);
+  buttonLeftdropdown.classList.toggle('is-hidden', isAtBeginningShare);
+  buttonRightdropdown.classList.toggle('is-hidden', isAtEndShare);
 }
 recommendations.addEventListener('scroll', toggleButtonVisibility);
+shareDropdownIcons.addEventListener('scroll', toggleButtonVisibility);
+
+
+
+
+
+
+
+
+
+
 
 
 function handleDynamicContent(){
@@ -77,7 +103,7 @@ if(subscribed){
 
 
 
-
+//dropdowns
 
 const subscribedButton = document.querySelector('.unsubscribe-button');
 const subDropdown = document.querySelector('.subscribe-dropdown');
@@ -98,15 +124,48 @@ document.addEventListener('click', function(event) {
 });
 }
 
+const shareButton = document.querySelector('.share');
+const shareDropdown = document.querySelector('.share-dropdown-wrapper');
+const dullBGShare = document.querySelector('.unsubscribe-confirmation-dull-bg-2');
+if(shareButton){
+shareButton.addEventListener('click', function(e){
+  if(shareDropdown.classList.contains('show-dropdown')){
+    shareDropdown.classList.remove('show-dropdown');
+    dullBGShare.classList.remove('show-dropdown');
+  }else{
+    shareDropdown.classList.add('show-dropdown');
+    dullBGShare.classList.add('show-dropdown');
+  }
+});
+document.addEventListener('click', function(event) {
+  const target = event.target;
+  const dropdown = target.closest('.share');
+  const dropdownShare = target.closest('.share-dropdown');
+  if(shareDropdown.classList.contains('show-dropdown')){
+    return;
+  }else{
+    if (!dropdown && !dropdownShare){
+      shareDropdown.classList.add('show-dropdown');
+      dullBGShare.classList.add('show-dropdown');
+      
+  }
+  }
+    
+});
+}
 
 
+const dullBG = document.querySelector('.unsubscribe-confirmation-dull-bg');
 const unsubscribeDropdownButton = document.querySelector('.unsubscribe');
 const unsubscribeConfirmation = document.querySelector('.unsubscribe-confirmation')
 unsubscribeDropdownButton.addEventListener('click', function(){
   if(unsubscribeConfirmation.classList.contains('show-dropdown')){
     unsubscribeConfirmation.classList.remove('show-dropdown');
+    dullBG.classList.remove('show-dropdown');
+
   }else{
     unsubscribeConfirmation.classList.add('show-dropdown');
+    dullBG.classList.add('show-dropdown');
   }
 });
 document.addEventListener('click', function(event) {
@@ -114,8 +173,12 @@ document.addEventListener('click', function(event) {
   const dropdown = target.closest('.unsubscribe');
   if (!dropdown){
     unsubscribeConfirmation.classList.add('show-dropdown');
+    dullBG.classList.add('show-dropdown');
   }
 });
+//dropdowns
+
+
 
 const unsubscribeConfirmationButton = document.querySelector('.unsubscribe-confirm');
 if(unsubscribeConfirmationButton){
@@ -154,9 +217,6 @@ if(unsubscribeConfirmationButton){
 }
 }
 
-window.onload = function() {
-  handleDynamicContent();
-};
 
 const likeIcon = document.querySelector('.feather-thumbs-up');
 const likeButton = document.querySelector('.like');
@@ -175,9 +235,18 @@ likeButton.addEventListener('click', function(){
             document.querySelector('.likes-count').innerHTML = response.likes;
             if(likeIcon.classList.contains('filler-for-svg')){
               likeIcon.classList.remove('filler-for-svg');
+              
+             
             }else{
               likeIcon.classList.add('filler-for-svg');
+              if(dislikeIcon.classList.contains('filler-for-svg')){
+                const dislikeCount = document.querySelector('.dislikes-count');
+                dislikeCount.innerHTML -= 1;
+              }
               dislikeIcon.classList.remove('filler-for-svg');
+             
+              
+              
             }
             
             
@@ -192,7 +261,7 @@ likeButton.addEventListener('click', function(){
             message.addEventListener('animationend', handleAnimationEnd);
             
             // Call the function to handle the dynamically loaded content
-            handleDynamicContent();
+           
           } else {
             console.error(xhr.statusText);
           }
@@ -219,9 +288,16 @@ dislikeButton.addEventListener('click', function(){
             document.querySelector('.dislikes-count').innerHTML = response.dislikes;
             if(dislikeIcon.classList.contains('filler-for-svg')){
               dislikeIcon.classList.remove('filler-for-svg');
+             
             }else{
               dislikeIcon.classList.add('filler-for-svg');
+              if(likeIcon.classList.contains('filler-for-svg')){
+                const likeCount = document.querySelector('.likes-count');
+                likeCount.innerHTML -= 1;
+              }
               likeIcon.classList.remove('filler-for-svg');
+              
+              
             }
             
             const message =  document.querySelector('.show-subscribed-banner');
@@ -235,11 +311,16 @@ dislikeButton.addEventListener('click', function(){
             message.addEventListener('animationend', handleAnimationEnd);
             
             // Call the function to handle the dynamically loaded content
-            handleDynamicContent();
+        
           } else {
             console.error(xhr.statusText);
           }
         }
         xhr.send(`liked=${disliked}`);
 });
+
+
+window.onload = function() {
+  handleDynamicContent();
+};
 

@@ -31,7 +31,7 @@ $row2 = mysqli_fetch_assoc($result2);
 <div class="wrapper">
 <navbar class="navbar">
     <div class="container1">
-        <div class="burger" onclick="toggleNav()">
+        <div class="burger">
             <div class="bar1"></div>
             <div class="bar2"></div>
             <div class="bar3"></div>
@@ -125,16 +125,12 @@ $row2 = mysqli_fetch_assoc($result2);
         </div>
             
             <div class="show-subscribed-banner "><p></p></div>
-            <div class="unsubscribe-confirmation show-dropdown">
-                <div class="user-unsubscribe"> <p>Unsubscribe from <?php echo $row2['username'] ?> ?</p> </div>
-                <div class="flex-for-confirmation-banner">
-                <div class="cancel"><p>Cancel</p></div>
-                <div class="unsubscribe-confirm"><p>Unsubscribe</p></div>
-                </div>
-            </div>
+           
+          
+            
             
         </div>
-       
+        
     <div class="rest-of-navigations">
         <div class="like-and-dislike">
             <div class="like">
@@ -255,19 +251,13 @@ $row2 = mysqli_fetch_assoc($result2);
 
         if(mysqli_num_rows($result) > 0){
         while($video = mysqli_fetch_assoc($result)){  
-            $thumbnail = $video['vid_thumbnail_url'];
-            $vid_uid = $video['vid_uid'];
-            $unique_id = 'myVideo_' . $video['vid_uid'];
-            $vid_url = $video['vidUrl'];
-            $url = 'template.php?vidId=' . $vid_uid;
-
            
         ?>
        
         <div class="vid-container">
             <div class="flex-for-video-and-description">
             <div><a href="template.php?<?= http_build_query(['title' => $video['vidUrl'], 'vidId' => $video['vid_uid']]) ?>"rel="noopener noreferrer"><div>
-            <div class="wrapper-for-video-controls" onmouseover="play(this)" onmouseout="stop(this)">
+            <div class="wrapper-for-video-controls">
             <img src="../Dashboard/<?php echo $video['vid_thumbnail_url'] ?>" alt="" class="video-poster" style="height:105px; width:184px; border-radius: 10px; pointer-events: none ; ">
                 <video src="../Dashboard/Uploads/<?php echo $video['vid_uid'] ?>" class="videos" id="<?php echo 'myVideo_' . $video['vid_uid'] ?>"  muted></video >
                 <div class="time-container">
@@ -351,12 +341,101 @@ $row2 = mysqli_fetch_assoc($result2);
 
 
 </div>
+<div class="share-dropdown-wrapper show-dropdown">
+<div class="share-dropdown ">
+    <div class="share-top"><p>Share</p></div>
+    <div class="icons-section">
+        <div class="slide-left-2"><img src="../Icons/Button-left.svg" alt=""></div>
+    <div class="icon-and-description">
+        <div class="icon embed"><img src="../Icons/embed.png" alt=""></div>
+        <div class="icon-description"> <p>Embed</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon"><img src="../Icons/whatsapp.png" alt=""></div>
+        <div class="icon-description"><p>Whatsapp</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon facebook"><img src="../Icons/facebook.png" alt=""></div>
+        <div class="icon-description"><p>Facebook</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon"><img src="../Icons/twitter.png" alt=""></div>
+        <div class="icon-description"><p>Twitter</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon"><img src="../Icons/mail.png" alt=""></div>
+        <div class="icon-description"><p>Email</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon"><img src="../Icons/KakaoTalk.png" alt=""></div>
+        <div class="icon-description"><p>KakaoTalk</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon"><img src="../Icons/Reddit.png" alt=""></div>
+        <div class="icon-description"><p>Reddit</p></div>
+    </div>
+    <div class="icon-and-description vk-flex">
+        <div class="icon vk"><img src="../Icons/VK.png" alt=""></div>
+        <div class="icon-description"><p>Vk</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon"><img src="../Icons/OK.png" alt=""></div>
+        <div class="icon-description"><p>Ok</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon Pinterest"><img src="../Icons/Pinterest.png" alt=""></div>
+        <div class="icon-description"><p>Pinterest</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon"><img src="../Icons/blogger.png" alt=""></div>
+        <div class="icon-description"><p>Blogger</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon"><img src="../Icons/Tumblr.png" alt=""></div>
+        <div class="icon-description"><p>tumblr</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon"><img src="../Icons/LinkedIn.png" alt=""></div>
+        <div class="icon-description"><p>linkedIn</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon skyrock"><img src="../Icons/skyrock.png" alt=""></div>
+        <div class="icon-description"><p>Skyrock</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon mix"><img src="../Icons/mix.png" alt=""></div>
+        <div class="icon-description"><p>Mix</p></div>
+    </div>
+    <div class="icon-and-description">
+        <div class="icon goo"><img src="../Icons/Goo.svg" alt=""></div>
+        <div class="icon-description"><p>Goo</p></div>
+    </div>
+    <div class="slide-right-2"><img src="../Icons/Button-right.svg" alt=""></div>
+</div>
+    <div class="input-field">
+        <input type="text" class="input-for-share-dropdown" value="https://youtu.be/V9hwz3KBVx0" readonly>
+        <div class="copy-btn"><button>copy</button></div>
+    </div>
+    
+    <div class="hr"></div>
+    <div class="bottom-share-navs">
+        <div><input type="checkbox" class="checkbox-input"></div>
+        <div><p>Start at <span>0:04</span></p></div>
+    </div>
+</div>
+</div>
+
+<div class="unsubscribe-confirmation show-dropdown">
+    <div class="user-unsubscribe"> <p>Unsubscribe from <?php echo $row2['username'] ?> ?</p> </div>
+    <div class="flex-for-confirmation-banner">
+    <div class="cancel"><p>Cancel</p></div>
+    <div class="unsubscribe-confirm"><p>Unsubscribe</p></div>
+    </div>
+</div>
 
 
-
-
-
-
+<div class="unsubscribe-confirmation-dull-bg show-dropdown"></div>
+<div class="unsubscribe-confirmation-dull-bg-2 show-dropdown"></div>
 
 
 </body>

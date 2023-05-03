@@ -41,15 +41,15 @@ if(isset($_POST["register"])){
 
         $mail->SMTPAuth = true;
 
-        $mail->Username = 'ne.kioko16@gmail.com';
+        $mail->Username = 'jobsexe4@gmail.com';
 
-        $mail->Password = 'ydbibbmfdnxljjyi';
+        $mail->Password = 'whwmqvcsfkcpluvz';
 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
         $mail->Port = 587;
 
-        $mail->setFrom('ne.kioko16@gmail.com', 'Youtube');
+        $mail->setFrom('jobsexe4@gmail.com', 'Youtube');
 
         $mail->addAddress($email, $f_Name);
 

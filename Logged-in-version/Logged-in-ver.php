@@ -194,7 +194,7 @@ $l_name = $_SESSION['user_last_name'];
     </div>
     <div class="hr second"></div>
     <div class="external-links"><p>About Press Copyright Contact us  Creators Advertise Developers <br> <br>
-Terms Privacy Policy & Safety How YouTube works Test new features <br> <br> © 2023 Google LLC</p></div>
+        Terms Privacy Policy & Safety How YouTube works Test new features <br> <br> © 2023 Google LLC</p></div>
     <div class="containers sub">
         <div class="icon"></div>
         <div class="description"></div>
@@ -241,13 +241,6 @@ Terms Privacy Policy & Safety How YouTube works Test new features <br> <br> © 2
 
         if(mysqli_num_rows($result) > 0){
         while($video = mysqli_fetch_assoc($result)){  
-            $thumbnail = $video['vid_thumbnail_url'];
-            $vid_uid = $video['vid_uid'];
-            $unique_id = 'myVideo_' . $video['vid_uid'];
-            $vid_url = $video['vidUrl'];
-            $url = 'template.php?vidId=' . $vid_uid;
-
-           
         ?>
         
         <div class="vid-container">

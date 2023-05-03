@@ -29,8 +29,9 @@ if(isset($_SESSION['user_id'])){
     </head>    
 <body>
         
-    <div class="wrapper">
+    <div class="wrapper"><!-- div contains the navbar, left-navigations and filter-buttons -->     
    <navbar class="navbar">
+
     <div class="container1">
         <div class="burger">
             <div class="bar1"></div>
@@ -38,18 +39,18 @@ if(isset($_SESSION['user_id'])){
             <div class="bar3"></div>
         </div>
         <div class="logo">
-        <div><a href="#"><img src="Logged-in-version/yt2.jpg" alt=""></a></div>
-        <div><a href="#">YouTube</a></div>
-    </div>
+            <div><a href="#"><img src="Logged-in-version/yt2.jpg" alt=""></a></div>
+            <div><a href="#">YouTube</a></div>
+        </div>
     </div>
     
     <div class="container2">
         <div class="searchbar"> <input type="text" placeholder="Search">
-        <div class="search-button"><button type="submit"><i class="fa fa-search"></i></button></div>
-    </div>
-   <div class="idie-mic">
-        <div class="microphone"><button style="font-size:24px"><i class="fa fa-microphone"></i></button></div>
-    </div>
+            <div class="search-button"><button type="submit"><i class="fa fa-search"></i></button></div>
+        </div>
+        <div class="idie-mic">
+            <div class="microphone"><button style="font-size:24px"><i class="fa fa-microphone"></i></button></div>
+        </div>
     </div>
 
     <div class="container3">
@@ -59,23 +60,24 @@ if(isset($_SESSION['user_id'])){
             <div class="dots-settings"></div>
         </div>
         <div class="sign-in-btn">
-    <i class='far fa-user-circle'></i>
-    <a href="Log-in/Sign_in/Sign_in">Sign in</a>
+            <i class='far fa-user-circle'></i>
+            <a href="Log-in/Sign_in/Sign_in">Sign in</a>
+        </div>
     </div>
-    </div>
-   </navbar>
+
+</navbar>
 
    <br>
   
 
 </nav>
  <div class="flex">
-   
-<div class="left-nav ">
+  
+<div class="left-nav "> <!-- div contains the left-navigations -->     
     <a href="watch">
     <div class="containers">
         <div class="icon"><img src="Icons/home-house-svgrepo-com.svg" alt=""></div>
-        <div class="description"> <p>Home</p> </div>
+        <div class="description"> <p>Home</p></div>
     </div>
     </a>
     <a href="ttt.php">
@@ -103,12 +105,14 @@ if(isset($_SESSION['user_id'])){
     <div class="hr second"></div>
 
     <div class="Subscriptions pursuade"><p>Sign in to like videos, comment, and subscribe.</p></div>
+
     <div class="containers-btn">
     <div class="sign-in-btn left-btn-nav">
          <i class='far fa-user-circle'></i>
         <a href="Log-in/Sign_in/Sign_in">Sign in</a>
     </div>
     </div>
+
     <div class="hr second line"></div>
    
    
@@ -161,9 +165,9 @@ if(isset($_SESSION['user_id'])){
     <div class="external-links"><p>About Press Copyright Contact us  Creators Advertise Developers <br> <br>
 Terms Privacy Policy & Safety How YouTube works Test new features <br> <br> © 2023 Google LLC</p></div>
 </div>
-<div class="filler-between-nav-and-links"></div>
+<div class="filler-between-nav-and-links"></div>    
 <div class="block">
-<div class="recommendations fixed" id="recommendations">
+<div class="recommendations fixed" id="recommendations"> <!-- filter buttons --> 
     <div id="slide-left" class="slide-left"> <button><img src="Logged-in-version/Button-left.svg" alt=""></button></div>
     <div id="recommendations-links" class="recommendations-links">
        <a href="">All</a>
@@ -186,16 +190,15 @@ Terms Privacy Policy & Safety How YouTube works Test new features <br> <br> © 2
     </div>
 
     <div id="slide-right" class="slide-right"><button><img src="Logged-in-version/Button-right.svg" alt=""></button></div>
-   </div>
-        </div>
-    </div>
+   </div><!-- filter buttons --> 
 </div>
+    </div>
+</div><!-- div contains the navbar, left-navigations and filter-buttons -->     
 
 
 <div class="flex2">
     <div class="empty"></div>
-
-    <div class="videos-container">
+    <div class="videos-container"><!-- div contains all the videos -->
         <?php
         $sql = "SELECT * FROM videos ORDER BY id DESC";
         $result = mysqli_query($conn, $sql);
@@ -204,29 +207,28 @@ Terms Privacy Policy & Safety How YouTube works Test new features <br> <br> © 2
         while($video = mysqli_fetch_assoc($result)){  
         ?>
         
-        <div class="vid-container">
+        <div class="vid-container"><!--div for each video --> 
             <div><a href="template.php?<?= http_build_query(['title' => $video['vidUrl'], 'vidId' => $video['vid_uid']]) ?>"rel="noopener noreferrer"><div>
-
-                <div class="wrapper-for-video-controls" onmouseover="play(this)" onmouseout="stop(this)">
+               
+                <div class="wrapper-for-video-controls" onmouseover="play(this)" onmouseout="stop(this)"><!-- div for the video and the controls -->
                 <video src="Dashboard/Uploads/<?php echo $video['vid_uid'] ?>" class="videos" id="<?php echo 'myVideo_' . $video['vid_uid'] ?>"  muted ></video > 
-                <div class="controls is-hidden">
+                    <div class="controls is-hidden"> <!-- div for controls --> 
                     <div class="mute-button">
                     <i class='fas fa-volume-mute'></i>
                     <i class='fas fa-volume-up '></i>
                     </div>
                     <div class="red-bar-click-region">
-                    <div class="red-bar">
-                        <div class="red-bar-background"></div>
-                        <div class="red-bar-background-loaded-bar"></div>
-
-                        </div>
+                        <div class="red-bar">
+                            <div class="red-bar-background"></div>
+                            <div class="red-bar-background-loaded-bar"></div>
                         </div>
                     </div>
-
-                </div>
+                </div><!-- div for controls --> 
+                </div><!-- div for the video and the controls -->
+                
             </div></a></div>
 
-            <div class="description">
+            <div class="description"><!-- div for the entire video description --> 
                 <div class="pfp"><p>
                 <?php 
                     $username = $video['first_name'];
@@ -272,23 +274,23 @@ Terms Privacy Policy & Safety How YouTube works Test new features <br> <br> © 2
                 </div>
 
                 <div class="dots-set for-video">
-            <div class="dots-settings"></div>
-            <div class="dots-settings"></div>
-            <div class="dots-settings"></div>
-        </div>
+                    <div class="dots-settings"></div>
+                    <div class="dots-settings"></div>
+                    <div class="dots-settings"></div>
+                </div>
 
             </div>
           
-            </div>
+            </div><!--div for each video --> 
            
+
         <?php
         }
         }else{
          echo "Empty";
         }
         ?>
-    </div>
-  
+    </div><!-- div contains all the videos -->
 </div>
 
 
