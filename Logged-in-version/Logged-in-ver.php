@@ -20,7 +20,7 @@ $l_name = $_SESSION['user_last_name'];
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
     <title> Youtube</title>
-    <link rel="icon" href="https://www.svgrepo.com/download/13671/youtube.svg" type="image/icon type">
+    <link rel="icon" href="../Icons/Youtube-icon.png" type="image/icon type">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="files_for_homepage/logged-in.css">
     </head>
@@ -34,8 +34,7 @@ $l_name = $_SESSION['user_last_name'];
             <div class="bar3"></div>
         </div>
         <div class="logo">
-        <div><a href="#"><img src="../Icons/yt2.jpg" alt=""></a></div>
-        <div><a href="#">YouTube</a></div>
+        <div><a href="Logged-in-ver.php"><img src="../Icons/YouTube_Logo.svg" alt=""></a></div>
     </div>
     </div>
     

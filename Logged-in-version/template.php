@@ -25,7 +25,8 @@ $row2 = mysqli_fetch_assoc($result2);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="files_for_template/template.css">
-    <title>Document</title>
+    <link rel="icon" href="../Icons/YouTube-icon.png" type="image/icon type">
+    <title>YouTube</title>
 </head>
 <body>
 <div class="wrapper">
@@ -37,8 +38,7 @@ $row2 = mysqli_fetch_assoc($result2);
             <div class="bar3"></div>
         </div>
         <div class="logo">
-        <div><a href="#"><img src="../Icons/yt2.jpg" alt=""></a></div>
-        <div><a href="#">YouTube</a></div>
+            <div><a href="Logged-in-ver.php"><img src="../Icons/YouTube_Logo.svg" alt=""></a></div>
     </div>
     </div>
     
