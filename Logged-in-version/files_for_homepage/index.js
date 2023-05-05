@@ -315,6 +315,11 @@ const leftNavLinks = document.querySelectorAll('.left-nav a');
 leftNavLinks.forEach(link => {
   if (link.href === window.location.href) {
     link.querySelector('.containers').classList.add('active');
+    const svgElement = document.querySelectorAll('.svg-leftnav path');
+    svgElement.forEach(element => {
+      element.style.fill = 'white';
+    })
+
   }
 });
 
@@ -325,21 +330,6 @@ const expandedNav = document.querySelector('.left-nav');
 const emptyBlock = document.querySelector('.empty');
 const vidContainer = document.querySelector('.videos-container');
 const filler = document.querySelector('.filler-between-nav-and-links');
-// function toggleNav(){
-//   if (minimizedNav.style.display === 'none') {
-//     minimizedNav.style.display = 'block';
-//     expandedNav.style.display = 'none';
-//     emptyBlock.style.minWidth = '50px';
-//     vidContainer.style.paddingLeft = '30px';
-//     filler.style.marginLeft = '80px';
-//  } else {
-//     minimizedNav.style.display = 'none';
-//     expandedNav.style.display = 'block';
-//     emptyBlock.style.minWidth = '230px';
-//     vidContainer.style.paddingLeft = '0px';
-//     filler.style.marginLeft = '237px';
-//  }
-// }
 function toggleNav() {
   const isMinimized = minimizedNav.style.display === 'none';
   const emptyBlockWidth = isMinimized ? '50px' : '230px';
@@ -352,7 +342,7 @@ function toggleNav() {
   vidContainer.style.paddingLeft = paddingLeft;
   filler.style.marginLeft = marginLeft;
 }
-
+navButton.addEventListener('click', toggleNav);
 
 const searchbar = document.querySelector('.input');
 const searchButton = document.querySelector('.search-button-left');
@@ -364,7 +354,6 @@ searchbar.addEventListener('blur', () => {
 });
 
 handleDynamicContent()
-
 
 
 
