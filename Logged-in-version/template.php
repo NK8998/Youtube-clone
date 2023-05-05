@@ -2,7 +2,7 @@
 include '../Dashboard/Required.php';
 
 session_start();
-if(!isset($_SESSION['user_id'])){
+if(!isset($_SESSION['user_uid'])){
     header("Location: ../watch.php");
     exit();
 }
@@ -83,8 +83,134 @@ $row2 = mysqli_fetch_assoc($result2);
   
 <div class="video-and-comment-section">
     <div class="video-container">
-    <div><video class="video" src="../Dashboard/Uploads/<?php echo $vid_uuid; ?>" controls></video></div>
+    <div><video class="video-main" src="../Dashboard/Uploads/<?php echo $vid_uuid; ?>" id="my_video_<?php echo $vid_uuid ?>" autoplay muted></video></div>
+    <div class="controls">
+        <div class="progress-bar">
+            <div class="click-region"></div>
+            <div class="red-bar background"></div>
+            <div class="red-bar background-loaded"></div>
+            <div class="red-bar progress"></div>
+        </div>
+        <div class="lower-navigations">
+            <div class="wrapper-for-left-and-right-side">
+                <div class="left-side">
+                    <div class="play-pause">
+                        <div class="play-button"><img src="../Icons/play-icon.svg" alt=""></div>
+                        <div class="pause-button"><img src="../Icons/pause_icon.svg" alt=""></div>
+                    </div>    
+                </div>
+                <div class="right-side">
+                    <div class="theatre-btn"><p>Toggle theatre</p></div>
+                </div>
+            </div>
+        </div>
     </div>
+    </div>
+
+
+</div>
+
+<div class="recommendations-section">
+    <div class="recommendations fixed" id="recommendations">
+        <div id="slide-left" class="slide-left"> <button><img src="../Icons/Button-left.svg" alt=""></button></div>
+        <div id="recommendations-links" class="recommendations-links">
+           
+            <li class="filter-button" id="all">All</li>
+            <li class="filter-button">From Josh A</li>
+            <li class="filter-button">Related</li>
+            <li class="filter-button">Jake Hill</li>
+            <li class="filter-button">Recently Uploaded</li>
+           
+        </div>
+    
+        <div id="slide-right" class="slide-right"><button><img src="../Icons/Button-right.svg" alt=""></button></div>
+       </div>
+       <div class="reccomendadtions-videos">
+        <div class="videos-container">
+            <?php
+            $sql = "SELECT * FROM videos ORDER BY RAND()";
+            $result = mysqli_query($conn, $sql);
+    
+            if(mysqli_num_rows($result) > 0){
+            while($video = mysqli_fetch_assoc($result)){  
+               
+            ?>
+           
+            <div class="vid-container">
+              
+                <div class="flex-for-video-and-description">
+                <div><a href="template.php?<?= http_build_query(['title' => $video['vidUrl'], 'vidId' => $video['vid_uid']]) ?>"rel="noopener noreferrer"><div>
+                <div class="wrapper-for-video-controls">
+                <img src="../Dashboard/<?php echo $video['vid_thumbnail_url'] ?>" alt="" class="video-poster" style="height:105px; width:184px; border-radius: 10px; pointer-events: none ; ">
+                    <video src="../Dashboard/Uploads/<?php echo $video['vid_uid'] ?>" class="videos" id="<?php echo 'myVideo_' . $video['vid_uid'] ?>"  muted></video >
+                    <div class="time-container">
+                        <div class="total-time"><p></p></div>
+                    </div>
+                    </div>
+                </div></a></div>
+    
+                <div class="description">
+                    <div class="describe-video">
+                        <div class="title" style="text-overflow: ellipsis;">
+                            <p><?php echo $video['title']?></p>
+                        </div>
+                        <div class="channel">
+                            <p><?php echo $video['username']?></p>
+                        </div>
+                        <div class="flex-6">
+                            <div>113.3k views</div>
+                            <div>.</div>
+                            <div class="time_uploaded"><?php 
+                            $uploaded_at = $video['time_uploaded'];
+    
+                            $now = new DateTime();
+                            $uploaded_time = new DateTime();
+                            $uploaded_time->setTimestamp($uploaded_at);
+                            $interval = $now->diff($uploaded_time);
+                            
+                            if ($interval->y > 0) {
+                                echo $interval->format('%y year' . ($interval->y > 1 ? 's' : '') . ' ago');
+                            } elseif ($interval->m > 0) {
+                                echo $interval->format('%m month' . ($interval->m > 1 ? 's' : '') . ' ago');
+                            } elseif ($interval->d > 0) {
+                                echo $interval->format('%d day' . ($interval->d > 1 ? 's' : '') . ' ago');
+                            } elseif ($interval->h > 0) {
+                                echo $interval->format('%h hour' . ($interval->h > 1 ? 's' : '') . ' ago');
+                            } elseif ($interval->i > 0) {
+                                echo $interval->format('%i minute' . ($interval->i > 1 ? 's' : '') . ' ago');
+                            } else {
+                                echo 'just now';
+                            } ?></div>
+                        </div>
+                    </div>
+    
+                            
+            
+                
+                </div>
+            
+                <div class="dots-set for-video">
+                    <div class="dots-settings"></div>
+                    <div class="dots-settings"></div>
+                    <div class="dots-settings"></div>
+                </div>
+
+            </div>
+                
+           
+                </div>
+           
+            <?php
+            }
+            }else{
+             echo "Empty";
+            }
+            ?>
+        </div>
+       </div>
+    </div>
+    
+
 <div class="video-description">
     <div class="title"><p><?php echo $row2['title'];?></p></div>
     <div class="navigations-for-video">
@@ -227,103 +353,7 @@ $row2 = mysqli_fetch_assoc($result2);
 
 </div>
 
-</div>
 
-<div class="recommendations-section">
-<div class="recommendations fixed" id="recommendations">
-    <div id="slide-left" class="slide-left"> <button><img src="../Icons/Button-left.svg" alt=""></button></div>
-    <div id="recommendations-links" class="recommendations-links">
-       
-        <li class="filter-button" id="all">All</li>
-        <li class="filter-button">From Josh A</li>
-        <li class="filter-button">Related</li>
-        <li class="filter-button">Recently Uploaded</li>
-       
-    </div>
-
-    <div id="slide-right" class="slide-right"><button><img src="../Icons/Button-right.svg" alt=""></button></div>
-   </div>
-   <div class="reccomendadtions-videos">
-    <div class="videos-container">
-        <?php
-        $sql = "SELECT * FROM videos ORDER BY RAND()";
-        $result = mysqli_query($conn, $sql);
-
-        if(mysqli_num_rows($result) > 0){
-        while($video = mysqli_fetch_assoc($result)){  
-           
-        ?>
-       
-        <div class="vid-container">
-            <div class="flex-for-video-and-description">
-            <div><a href="template.php?<?= http_build_query(['title' => $video['vidUrl'], 'vidId' => $video['vid_uid']]) ?>"rel="noopener noreferrer"><div>
-            <div class="wrapper-for-video-controls">
-            <img src="../Dashboard/<?php echo $video['vid_thumbnail_url'] ?>" alt="" class="video-poster" style="height:105px; width:184px; border-radius: 10px; pointer-events: none ; ">
-                <video src="../Dashboard/Uploads/<?php echo $video['vid_uid'] ?>" class="videos" id="<?php echo 'myVideo_' . $video['vid_uid'] ?>"  muted></video >
-                <div class="time-container">
-                    <div class="total-time"><p></p></div>
-                </div>
-                </div>
-            </div></a></div>
-
-            <div class="description">
-                <div class="describe-video">
-                    <div class="title" style="text-overflow: ellipsis;">
-                        <p><?php echo $video['title']?></p>
-                    </div>
-                    <div class="channel">
-                        <p><?php echo $video['username']?></p>
-                    </div>
-                    <div class="flex-6">
-                        <div>113.3k views</div>
-                        <div>.</div>
-                        <div><?php 
-                        $uploaded_at = $video['time_uploaded'];
-
-                        $now = new DateTime();
-                        $uploaded_time = new DateTime();
-                        $uploaded_time->setTimestamp($uploaded_at);
-                        $interval = $now->diff($uploaded_time);
-                        
-                        if ($interval->y > 0) {
-                            echo $interval->format('%y year' . ($interval->y > 1 ? 's' : '') . ' ago');
-                        } elseif ($interval->m > 0) {
-                            echo $interval->format('%m month' . ($interval->m > 1 ? 's' : '') . ' ago');
-                        } elseif ($interval->d > 0) {
-                            echo $interval->format('%d day' . ($interval->d > 1 ? 's' : '') . ' ago');
-                        } elseif ($interval->h > 0) {
-                            echo $interval->format('%h hour' . ($interval->h > 1 ? 's' : '') . ' ago');
-                        } elseif ($interval->i > 0) {
-                            echo $interval->format('%i minute' . ($interval->i > 1 ? 's' : '') . ' ago');
-                        } else {
-                            echo 'just now';
-                        } ?></div>
-                    </div>
-                </div>
-
-                        
-                <div class="dots-set for-video">
-            <div class="dots-settings"></div>
-            <div class="dots-settings"></div>
-            <div class="dots-settings"></div>
-        </div>
-
-            </div>
-        </div>
-            </div>
-       
-        <?php
-        }
-        }else{
-         echo "Empty";
-        }
-        ?>
-    </div>
-   </div>
-</div>
-
-
-</div>
 <div class="comment-section">
     <div class="top-row">
         <div class="total-comments"><p>758 Comments</p></div>
@@ -336,6 +366,9 @@ $row2 = mysqli_fetch_assoc($result2);
     <div class="comments">
         
     </div>
+</div>
+
+
 </div>
 
 

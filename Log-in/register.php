@@ -22,11 +22,11 @@ $Cpass = '';
 
 
 if(isset($_POST["register"])){
-    $f_Name = $_POST['first_name'];
-    $l_Name = $_POST['last_name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $Cpass = $_POST['Cpassword'];
+    $f_Name = trim($_POST['first_name']);
+    $l_Name = trim($_POST['last_name']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+    $Cpass = trim($_POST['Cpassword']);
 
 
     // Instantiation an$mail = passing `true` enables exceptions
@@ -78,9 +78,10 @@ if(isset($_POST["register"])){
         $random_number = rand(0, count($colors) - 1);
         $color = $colors[$random_number];
         $pfp = substr(trim($f_Name),0,1);
+        $user_uid = uniqid();
 
-        $stmt = $conn->prepare("INSERT INTO user_info (first_name, last_name, email, password, Verification_code, email_verified_at, bgcolor_pfp, user_pfp) VALUES (?, ?, ?, ?, ?, NULL, ?, ?)");
-        $stmt->bind_param("sssssss", $f_Name, $l_Name, $email, $password, $verification_code, $color, $pfp);
+        $stmt = $conn->prepare("INSERT INTO user_info (first_name, last_name, email, password, Verification_code, email_verified_at, bgcolor_pfp, user_pfp, user_uid) VALUES (?, ?, ?, ?, ?, NULL, ?, ?, ?)");
+        $stmt->bind_param("ssssssss", $f_Name, $l_Name, $email, $password, $verification_code, $color, $pfp, $user_uid);
         $stmt->execute();
         $stmt->close();
 

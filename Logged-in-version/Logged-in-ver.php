@@ -2,12 +2,13 @@
 include '../Dashboard/Required.php';
 
 session_start();
-if(!isset($_SESSION['user_id'])){
+if(!isset($_SESSION['user_uid'])){
     header("Location: ../watch.php");
     exit();
 }
 $user = $_SESSION['user_first_name'];
 $l_name = $_SESSION['user_last_name'];
+$email =  $_SESSION['email'];
 
 
 
@@ -19,7 +20,7 @@ $l_name = $_SESSION['user_last_name'];
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width">
-    <title> Youtube</title>
+    <title> YouTube</title>
     <link rel="icon" href="../Icons/Youtube-icon.png" type="image/icon type">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="files_for_homepage/logged-in.css">
@@ -52,7 +53,7 @@ $l_name = $_SESSION['user_last_name'];
     
     <div class="container3">
     
-    <a href="../Dashboard/Channel-Dashboard.php?user=<?php echo $user; ?>&last_name=<?php echo $l_name; ?>">
+    <a href="../Dashboard/Channel-Dashboard.php">
             <div class="video-plus"><img src="../Icons/video-plus (2).svg" alt=""></div>
             </a>
         <div class="noti"> <object data="../Icons/notification.svg" type=""></object></div>
@@ -60,7 +61,7 @@ $l_name = $_SESSION['user_last_name'];
         <?php
             $pfp = substr(trim($user), 0, 1); 
            
-            $sql = "SELECT * FROM user_info WHERE first_name = '$user'";
+            $sql = "SELECT * FROM user_info WHERE first_name = '$user' AND email= '$email'";
             $result=mysqli_query($conn, $sql);
 
             $row = mysqli_fetch_assoc($result);
@@ -99,7 +100,7 @@ $l_name = $_SESSION['user_last_name'];
 
 
 <div class="left-nav ">
-    <a href="Logged-in-ver.php?user=<?php echo $user; ?>&last_name=<?php echo $l_name; ?>">
+    <a href="Logged-in-ver.php">
     <div class="containers">
         <div class="icon"><img src="../Icons/home-house-svgrepo-com.svg" alt=""></div>
         <div class="description"> <p>Home</p> </div>
@@ -281,8 +282,8 @@ $l_name = $_SESSION['user_last_name'];
             <div class="description">
                 <div class="pfp"><p>
                     <?php 
-                    $username = $video['first_name'];
-                    $sql2 = "SELECT * FROM user_info WHERE first_name='$username' ";
+                    $user_uid = $video['user_uid'];
+                    $sql2 = "SELECT * FROM user_info WHERE user_uid='$user_uid'";
                     $result2 = mysqli_query($conn, $sql2);
                     $rows = mysqli_fetch_assoc($result2);
                     echo '<p style="background-color:' . $rows['bgcolor_pfp'] . '; padding:8px 14px;padding-top: 9px;">' .  $rows['user_pfp'] . '</p>';

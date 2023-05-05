@@ -39,7 +39,8 @@ body::-webkit-scrollbar-thumb:hover{
 .wrapper{
     position: fixed;
     z-index: 2;
-    width: calc(100% - 30px);
+    width: 100% ;
+    padding-right: 30px;
     height: 1vh;
 }
 
@@ -47,8 +48,9 @@ body::-webkit-scrollbar-thumb:hover{
     display: flex;
     justify-content: space-between;
     background-color: rgb(15, 15, 15);
-    height: 60px;
+    height: 55px;
     padding-left: 15px;
+    padding-right: 30px;
     overflow: hidden;
     
 }
@@ -118,17 +120,18 @@ body::-webkit-scrollbar-thumb:hover{
 
 .container2{
     justify-content: center;
-    width: 78%;
+    width:42.5%;
     gap: 10px;
     margin-top: 8px;
+    background-color: none;
+    
+    transform: translateX(38px);
 }
-
-
 
 .searchbar{
     display: flex;
     height: 20px;
-    width: 50%;
+    width: 100%;
 }
 
 .input{
@@ -303,85 +306,185 @@ body::-webkit-scrollbar-thumb:hover{
     color: white;
     
 }
-.video{
-   left: 0;
-   object-fit: fill;
-    width: 100%;
-}
-video{
+.video-main{
     width: 100%;
     
     
 }
-.video-container{
-    position: relative;
+.video-main.theatre{
+    height: 78vh;
+    
+}
+.video-container video{
+    width: 100%;
+    min-width: 600px;
+}
 
-    width: fit-content;
+
+.video-container{
+    text-align: center;
+    position: relative;
+    background-color: black;
+    width: 100%;
     height: fit-content;
-    overflow: hidden;
 }
+.video-container.theatre{
+    height: 80vh;
+}
+.theatre-btn p{
+    background-color: white;
+    border-radius: 12px;
+    padding: 5px;
+    width: fit-content;
+}
+.theatre-btn{
+    cursor: pointer;
+    width: fit-content;
+}
+.controls{
+    background-color: rgba(0, 0, 255, 0.137);
+    position: absolute;
+    height:60px;
+    width: calc(100% - 20px);
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.progress-bar{
+    height: 5px;
+    width: 100%;
+    background-color: red;
+    position: relative;
+}
+.red-bar{
+    height: 5px;
+}
+.click-region{
+    transform: translateY(-10px);
+    height: 15px;
+    width: 100%;
+    background-color: blue;
+    position: absolute;
+}
+.background{
+    background-color: rgb(54, 54, 54);
+    position: absolute;
+    width: 100%;
+    pointer-events: none;
+}
+.background-loaded{
+    background-color: gray;
+    position: absolute;
+    width: 30%;
+    pointer-events: none;
+}
+
+.progress{
+    background-color: crimson;
+    position: absolute;
+    width: 10%;
+    pointer-events: none;
+}
+.lower-navigations{
+    height: 50px;
+    background-color: aqua;
+    width: calc(100%-20px);
+    padding-left: 10px;
+    padding-right: 10px;
+   
+}
+.wrapper-for-left-and-right-side{
+    transform: translateY(10px);
+    display: flex;
+    justify-content: space-between;
+}
+.left-side{
+    display: flex;
+    gap: .2em;
+}
+.play-pause-hidden{
+    display: none;
+}
+.play-pause{
+    position: relative;
+}
+.pause-button{
+    position: absolute;
+}
+.play-button{
+    position: absolute;
+}
+.play-button img{
+    height: 20px;
+    width: 20px;
+    filter: invert(100%) sepia(6%) saturate(0%) hue-rotate(329deg) brightness(108%) contrast(101%);
+}
+.pause-button img{
+    height: 20px;
+    width: 20px;
+    filter: invert(100%) sepia(6%) saturate(0%) hue-rotate(329deg) brightness(108%) contrast(101%);
+}
+
 .video-description{
     height: fit-content;
     width:fit-content;
-    margin-top: 10px;
-    
+    margin-top: -20px;
+
 }
 .flex-wrapper-for-video-and-recomendations{
     transform: translateY(60px);
-    display: flex;
-    gap: 2em;
-    
-    
+    display: grid;
+    grid-template-columns: 70% 30%;
+    gap: 1.5em;
 }
+.recommendations-section.theatre{
+    grid-column: 2;
+    grid-row: 2 / span 3;
+    padding-right: 30px;
+}
+.video-description.theatre{
+    grid-column: 1;
+    grid-row: 2;
+    padding-left: 60px;
+}
+/* .flex-wrapper-for-video-and-recomendations :nth-child(2) {
+    grid-column: 2;
+    grid-row: 2;
+}
+.flex-wrapper-for-video-and-recomendations :nth-child(3) {
+    grid-column: 1;
+    grid-row: 2;
+} */
 .wrapper-for-everything{
     display: grid;
     place-content: center;
-    padding-left: 70px;
-    padding-right: 70px;
+    padding-left: 60px;
+    padding-right: 60px;
+}
+.wrapper-for-everything.theatre{
+    padding-left: 0px;
+    padding-right: 10px;
+    margin-top: -20px;
 }
 .recommendations-section{
     height: fit-content;
     flex-grow: 1;
-    min-width: 200px;
+    min-width: 100px;
+    grid-row: span 3;
+    
+    
 }
 .recommendations{
     background-color: rgb(15, 15, 15);
     display: flex;
     height: 55px;
     transform: translateY(-2px);
-    min-width: 200px;
+    min-width: 100px;
     
 }
-@media(max-width:60em){
-    .flex-wrapper-for-video-and-recomendations{
-        display: flex;
-        flex-direction: column;
-        padding-left: 0px;
-        padding-right: 0px;
-        
-      
 
-    }
-    .video-and-comment-section{
-        min-width: 100%;
-        
-    }
-    .video-container{
-        position: relative;
-        width: fit-content ;
-        padding-left: 40px;
-        padding-right: 40px;
-        height: fit-content;
-        
-    }
-
-}
-@media(min-width:80em){
-    .video-and-comment-section{
-        max-width: 1200px;
-        
-    }
-}
 #recommendations-links{
     margin-top: 10px;
     height: 33px;
@@ -491,9 +594,18 @@ video{
  .video-and-comment-section{
     overflow-wrap: break-word;
     text-overflow: ellipsis;
-    width: 78%;
+    width: 100%;
+    min-width: 670px;
+    
+   
     
  }
+ .video-and-comment-section.theatre{
+    grid-column: span 2 ;
+    height: 80vh;
+    
+ }
+ 
  .full-video-description{
     overflow-wrap: break-word;
     text-overflow: ellipsis;
@@ -595,6 +707,7 @@ video{
     background-color: rgb(56, 55, 55);
     border-radius: 10px;
     position: absolute;
+    z-index: 11;
     overflow: hidden;
     padding: 7px 0px;
     transform: translateY(-130px);
@@ -813,6 +926,7 @@ video{
  .top-row{
     display: flex;
     gap: 2em;
+    width: fit-content;
  }
  .top-row p{
     color: white;
@@ -828,7 +942,11 @@ video{
     width: 20px;
  }
  .comment-section{
-    transform: translateY(60px);
+    transform: translateY(0px);
+    width: 100%;
+ }
+ .comment-section.theatre{
+    margin-top: 0px;
     padding-left: 60px;
  }
  .users-pfp-and-input {
@@ -909,7 +1027,7 @@ video{
  .videos-container {
     display: flex;
     flex-direction: column;
-    gap: .3em;
+    gap: .5em;
     padding: 10px 10px;
     font-family: roboto;
     margin-left: -18px;
@@ -923,6 +1041,7 @@ video{
    
 
  }
+ 
  .vid-container video{
     border-radius: 15px;
     height: 105px;
@@ -940,8 +1059,6 @@ video{
 .vid-container{
     text-overflow: ellipsis;
     height:105px;
-    width: fit-content;
-    transform: scale(.97); 
    
 }
 .vid-container img{
@@ -955,11 +1072,12 @@ video{
     display: flex;
     gap: .3em;
     
+    
 }
 .describe-video{
     display: grid;
     gap: .3em;
-    width: 210px ;
+    max-width: 210px;
     text-overflow: ellipsis;
 }
 .vid-container .channel{
@@ -968,7 +1086,7 @@ video{
 }
 .vid-container .flex-6{
     display: flex;
-    color: rgb(170, 168, 168);
+    color: rgb(155, 153, 153);
     font-size: 13px;
     gap: .2em;
 }
@@ -979,7 +1097,7 @@ video{
     color: white;
     font-size: 12px;
     font-weight: 500;
-    max-height: 25px;
+    max-height: 30px;
     overflow-wrap: break-word;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -988,6 +1106,7 @@ video{
 }
 .vid-container .channel{
     font-size: 11px;
+    margin-top: 8px;
 }
 
 
@@ -1008,6 +1127,11 @@ video{
     opacity: 1;
    
 }
+.vid-container .time_uploaded{
+    max-width: 50px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 .flex-for-video-and-description{
     display: flex;
     gap: 1em;
@@ -1020,7 +1144,7 @@ video{
     cursor: pointer;
 }
 .for-video{
-    margin-left: -20px;
+    margin-left: -10px;
     transform: translateY(-10px);
     height: fit-content;
     padding: 10px 16px;
@@ -1223,4 +1347,91 @@ video{
 }
 .bottom-share-navs span{
     color: rgba(128, 128, 128, 0.603);
+}
+@media(max-width:62em){
+    .wrapper-for-everything{
+        padding-left: 25px;
+        padding-right: 25px;
+       }
+    .flex-wrapper-for-video-and-recomendations{
+        display: grid;
+        grid-template-columns: 1fr;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+   
+    .video-and-comment-section{
+        min-width: 100%;
+    }
+    .video-description{
+        grid-column: 1;
+        grid-row: 2;
+    }
+    .recommendations-section{
+        grid-column: 1;
+        grid-row: 3;
+    }
+    .video-description.theatre{
+        grid-column: 1;
+        grid-row: 2;
+        padding-left: 0px;
+    }
+    .recommendations-section.theatre{
+        grid-column: 1;
+        grid-row: 3/span 1;
+        
+    }
+    .comment-section{
+        grid-column: 1;
+        grid-row: 4;
+    }
+    .comment-section.theatre{
+        margin-top: 0px;
+        padding-left: 0px;
+    }
+  
+    .videos-container{
+        margin-left: 0px;
+    }
+    .video-container{
+        position: relative;
+        width: fit-content ;
+        height: fit-content;
+    }
+    .recommendations-section{
+        min-width: none;
+        width: 100%;
+    }
+    .videos-container{
+        width: 100%;
+    }
+    
+    .vid-container .describe-video{
+        max-width: 600px;
+    }
+    .vid-container{
+        width: 100%;
+        justify-content: space-between;
+    }
+    .flex-for-video-and-description{
+        display: flex;
+        gap: 1em;
+        
+    }
+    .vid-container .description{
+        width: 100%;
+    }
+}
+
+@media (min-width: 62em) and (max-width: 85em) {
+    .wrapper-for-everything{
+     padding-left: 15px;
+     padding-right: 15px;
+    }
+   }
+@media(min-width:80em){
+    .video-and-comment-section{
+        max-width: 2000px;
+        
+    }
 }

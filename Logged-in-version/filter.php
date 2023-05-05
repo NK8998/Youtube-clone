@@ -14,8 +14,8 @@ if (isset($_POST['filter'])) {
 
   if (mysqli_num_rows($result) > 0) {
     while ($video = mysqli_fetch_assoc($result)) {
-        $username = $video['first_name'];
-        $sql2 = "SELECT * FROM user_info WHERE first_name='$username' ";
+        $user_uid = $video['user_uid'];
+        $sql2 = "SELECT * FROM user_info WHERE user_uid='$user_uid'";
         $result2 = mysqli_query($conn, $sql2);
         $rows = mysqli_fetch_assoc($result2);
 

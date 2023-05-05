@@ -7,10 +7,10 @@ $params = session_get_cookie_params();
 $params["httponly"] = true;
 session_set_cookie_params($params["lifetime"], $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
 session_start();
-if(isset($_SESSION['user_id'])){
+if(isset($_SESSION['user_uid'])){
     $user = $_SESSION['user_first_name'] ;
     $l_name = $_SESSION['user_last_name'] ;
-    header("Location: Logged-in-version/Logged-in-ver.php?user=$user&last_name=$l_name");
+    header("Location: Logged-in-version/Logged-in-ver.php");
     exit();
 }
 
@@ -168,7 +168,7 @@ Terms Privacy Policy & Safety How YouTube works Test new features <br> <br> © 2
 <div class="filler-between-nav-and-links"></div>    
 <div class="block">
 <div class="recommendations fixed" id="recommendations"> <!-- filter buttons --> 
-    <div id="slide-left" class="slide-left"> <button><img src="Logged-in-version/Button-left.svg" alt=""></button></div>
+    <div id="slide-left" class="slide-left"> <button><img src="Icons/Button-left.svg" alt=""></button></div>
     <div id="recommendations-links" class="recommendations-links">
        <a href="">All</a>
        <a href="">Gaming</a>
@@ -189,7 +189,7 @@ Terms Privacy Policy & Safety How YouTube works Test new features <br> <br> © 2
        <a href="">New to you</a>
     </div>
 
-    <div id="slide-right" class="slide-right"><button><img src="Logged-in-version/Button-right.svg" alt=""></button></div>
+    <div id="slide-right" class="slide-right"><button><img src="Icons/Button-right.svg" alt=""></button></div>
    </div><!-- filter buttons --> 
 </div>
     </div>

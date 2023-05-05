@@ -3,13 +3,10 @@
 include 'Required.php';
 
 session_start();
-if(!isset($_SESSION['user_id'])){
+if(!isset($_SESSION['user_uid'])){
     header("Location: ../watch.php");
     exit();
 }
-
-$user = $_GET['user'];
-$l_name = $_GET['last_name'];
 
 
 
@@ -20,14 +17,15 @@ if(isset($_FILES['video_name'])){
     $file_size = $_FILES['video_name']['size'];
     $path = "Uploads/".$file_name;
     $title = htmlspecialchars($_POST['title'], ENT_QUOTES);
-    $user = htmlspecialchars($_POST['f_name'], ENT_QUOTES);
-    $l_name = htmlspecialchars($_POST['l_name'], ENT_QUOTES);
+    $user =  htmlspecialchars($_SESSION['user_first_name'], ENT_QUOTES);
+    $l_name =  htmlspecialchars($_SESSION['user_last_name'], ENT_QUOTES);
     $category = htmlspecialchars($_POST['category'], ENT_QUOTES);
     $username = trim($user ." " . $l_name);
     $time_uploaded = time();
     $f_name = $user;
     $vidID = uniqid();
     $ext = pathinfo($file_name, PATHINFO_EXTENSION);
+    $user_uid = $_SESSION['user_uid'];
 
 
     
@@ -50,10 +48,12 @@ if(isset($_FILES['video_name'])){
         $ffmpeg = "C:\\ffmpeg\\bin\\ffmpeg";
         $imageFile = "Thumbnails/" . $vidID . ".jpg";
         $size= "640x480";
-        $getfromSecond = 25;
+        $duration = shell_exec("ffprobe -i $file_tmp -show_entries format=duration -v quiet -of csv=\"p=0\"");
+        $randomTime = rand(0, (int)$duration);
+        $getfromSecond = 37;
         $vid_thumbnail = $vidID . ".jpg";
      
-        $cmd = "$ffmpeg -i $file_tmp -an -ss $getfromSecond -s $size $imageFile 2>&1";
+        $cmd = "$ffmpeg -i $file_tmp -an -ss $randomTime -s $size $imageFile 2>&1";
         shell_exec($cmd);
     
     
@@ -69,8 +69,8 @@ if(isset($_FILES['video_name'])){
 
         
         if(move_uploaded_file($file_tmp, "Uploads/". $vid_uid)){
-            $stmt = $conn->prepare("INSERT INTO videos (vidUrl, title, username, time_uploaded, first_name, vid_uid, vid_thumbnail_url, vid_thumbnail, Category) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssssss", $path, $title, $username, $time_uploaded, $f_name, $vid_uid, $imageFile, $vid_thumbnail, $category);
+            $stmt = $conn->prepare("INSERT INTO videos (vidUrl, title, username, time_uploaded, first_name, vid_uid, vid_thumbnail_url, vid_thumbnail, Category, user_uid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("ssssssssss", $path, $title, $username, $time_uploaded, $f_name, $vid_uid, $imageFile, $vid_thumbnail, $category, $user_uid);
             if($stmt->execute()){
                 echo 'Video Uploaded Successfully';
             }
@@ -98,10 +98,8 @@ if(isset($_FILES['video_name'])){
     <title>Channel dashboard</title>
 </head>
 <body>
-    <form action="Channel-Dashboard.php?user=<?php echo $user; ?>&last_name=<?php echo $l_name; ?>" enctype="multipart/form-data" method="post">
+    <form action="Channel-Dashboard.php" enctype="multipart/form-data" method="post">
         <input type="file" name="video_name">
-        <input type="hidden" value="<?php echo $_GET['user'] ?>" name="f_name">
-        <input type="hidden" value="<?php  echo $_GET['last_name']?>" name="l_name">
         <label for="">Title of your video</label><input type="text" name="title">
         <label for="">Category</label><input type="text" name="category">
         <input type="submit" value="upload">

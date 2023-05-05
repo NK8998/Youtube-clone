@@ -33,11 +33,12 @@ if(isset($_POST['submit_btn'])){
                 session_set_cookie_params($params["lifetime"], $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
                 
                 session_start();
-                $_SESSION['user_id'] = $row['id'];
+                $_SESSION['user_uid'] = $row['user_uid'];
                 $_SESSION['user_first_name'] = trim($row['first_name']);
                 $_SESSION['user_last_name'] = trim($row['last_name']);
+                $_SESSION['email'] = trim($row['email']);
                 session_regenerate_id(true);
-                header("Location: ../../Logged-in-version/Logged-in-ver.php?user=" . $row['first_name'] . "&last_name=" . $row['last_name']);
+                header("Location: ../../Logged-in-version/Logged-in-ver.php");
                 exit();
             }
         }
