@@ -26,6 +26,9 @@ $email =  $_SESSION['email'];
     <link rel="stylesheet" href="files_for_homepage/logged-in.css">
     </head>
 <body>
+<div class="loading-image">
+    <div class="navbar-pseudo"></div>
+</div>
     <div class="wrapper">
    <navbar class="navbar">
     <div class="container1">

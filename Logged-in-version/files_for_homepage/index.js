@@ -1,3 +1,25 @@
+window.addEventListener('load', () => {
+  const loadingImage = document.querySelector('.loading-image');
+  const filterAllButton = document.getElementById('all');
+  
+ 
+  filterAllButton.click();
+  
+  
+  const videos = [...document.getElementsByTagName('video')];
+
+  videos.forEach(video => {
+    video.addEventListener('loadedmetadata', () => {
+      const allLoaded = videos.every(video => video.readyState >= 2);
+      if (allLoaded) {
+        console.log('All videos have finished loading!');
+        loadingImage.style.display = 'none';
+      }
+    });
+  });
+
+});
+ 
 
 const buttonRight = document.getElementById('slide-right');
 const buttonLeft = document.getElementById('slide-left');
@@ -19,14 +41,14 @@ function toggleButtonVisibility() {
 
   buttonLeft.classList.toggle('is-hidden', isAtBeginning);
   buttonRight.classList.toggle('is-hidden', isAtEnd);
+  if(recommendations.scrollWidth == recommendations.clientWidth){
+    buttonRight.classList.add('is-hidden');
+  }
 }
 
 recommendations.addEventListener('scroll', toggleButtonVisibility);
 
-window.addEventListener('load', () => {
-  const filterAllButton = document.getElementById('all');
-  filterAllButton.click();
-});
+
 
 let currentFilter = '';
 function handleRecommendationLinks() {
@@ -353,12 +375,9 @@ searchbar.addEventListener('blur', () => {
   searchButton.classList.add('in-focus');
 });
 
+
+
 handleDynamicContent()
-
-
-
-
-
 
 
 

@@ -18,6 +18,19 @@ body{
     background-color: rgb(15, 15, 15);
     
 }
+.loading-image{
+    position: fixed;
+    z-index: 1000;
+    display: block;
+    width: 100%;
+    height: 100vh;
+    background-color: gray;
+}
+.navbar-pseudo{
+    background-color: rgb(97, 96, 96);
+    height: 60px;
+    width: 100%;
+}
 body::-webkit-scrollbar{
     width: 8px;
 }
